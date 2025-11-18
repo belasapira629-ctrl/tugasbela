@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Vybl - Kemewahan dan Kenyamanan</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #1a1a1a;
+            --accent-gold: #d4af37;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-light);
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold) !important;
+            letter-spacing: 1px;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--text-light) !important;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-gold) !important;
+        }
+        
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('https://picsum.photos/seed/hotel-luxury/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+        
+        .booking-form {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-control, .form-select {
+            background-color: var(--secondary-black);
+            border: 1px solid #333;
+            color: var(--text-light);
+            border-radius: 4px;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background-color: var(--secondary-black);
+            border-color: var(--accent-gold);
+            color: var(--text-light);
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+        }
+        
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--primary-black);
+            font-weight: 600;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            background-color: #c9a52f;
+            color: var(--primary-black);
+            transform: translateY(-2px);
+        }
+        
+        /* Section Styles */
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            bottom: -10px;
+            left: 0;
+            background-color: var(--accent-gold);
+        }
+        
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: var(--secondary-black);
+        }
+        
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Rooms Section */
+        .room-card {
+            background-color: var(--secondary-black);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .room-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .room-card:hover .room-image img {
+            transform: scale(1.1);
+        }
+        
+        .room-content {
+            padding: 25px;
+        }
+        
+        .room-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .room-price {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .room-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .room-features li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+        
+        .room-features i {
+            color: var(--accent-gold);
+            margin-right: 8px;
+        }
+        
+        /* Facilities Section */
+        .facility-item {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: var(--secondary-black);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .facility-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .facility-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+        
+        .facility-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        
+        .facility-description {
+            color: var(--text-muted);
+        }
+        
+        /* Testimonials Section */
+        .testimonial-card {
+            background-color: var(--secondary-black);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .author-info h5 {
+            margin-bottom: 0;
+            color: var(--text-light);
+        }
+        
+        .author-info p {
+            margin-bottom: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .rating {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+        
+        /* Gallery Section */
+        .gallery-item {
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            background-color: var(--secondary-black);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .contact-info {
+            background-color: var(--secondary-black);
+            padding: 40px;
+            border-radius: 8px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        .contact-text h5 {
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+        
+        .contact-text p {
+            margin-bottom: 0;
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-black);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-black);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .booking-form {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">VYBL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rooms">Kamar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#facilities">Fasilitas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hotel Vybl</h1>
+                <p class="hero-subtitle">Kemewahan dan Kenyamanan di Setiap Sudut</p>
+                
+                <div class="booking-form">
+                    <form id="bookingForm">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="checkin" class="form-label">Check-in</label>
+                                <input type="date" class="form-control" id="checkin" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="checkout" class="form-label">Check-out</label>
+                                <input type="date" class="form-control" id="checkout" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="adults" class="form-label">Dewasa</label>
+                                <select class="form-select" id="adults">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="children" class="form-label">Anak-anak</label>
+                                <select class="form-select" id="children">
+                                    <option value="0" selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="submit" class="btn btn-gold w-100">Cek Ketersediaan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-image">
+                        <img src="hotel 2.jpg" alt="Hotel Vybl Interior">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Tentang Hotel Vybl</h2>
+                    <p class="section-subtitle">Hotel Vybl adalah destinasi akomodasi premium yang menggabungkan kemewahan, kenyamanan, dan layanan yang tak tertandingi untuk menciptakan pengalaman menginap yang tak terlupakan.</p>
+                    <p>Terletak di lokasi strategis, Hotel Vybl menawarkan akses mudah ke berbagai atraksi wisata, pusat bisnis, dan hiburan. Dengan desain interior yang elegan dan fasilitas modern, kami berkomitmen untuk memberikan pengalaman menginap yang memuaskan bagi setiap tamu.</p>
+                    <p>Tim kami yang berdedikasi siap melayani Anda dengan keramahan dan profesionalisme, memastikan setiap kebutuhan Anda terpenuhi selama menginap di Hotel Vybl.</p>
+                    <button class="btn btn-gold mt-3">Pelajari Lebih Lanjut</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title mx-auto">Kamar Kami</h2>
+                <p class="section-subtitle mx-auto">Nikmati kenyamanan dan kemewahan di setiap kamar yang kami tawarkan</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="hotel 3.jpg" alt="Deluxe Room">
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Deluxe Room</h3>
+                            <p class="room-price">Rp 1.200.000 / malam</p>
+                            <ul class="room-features">
+                                <li><i class="bi bi-check-circle-fill"></i> King Size Bed</li>
+                                <li><i class="bi bi-check-circle-fill"></i> City View</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Mini Bar</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Free Wi-Fi</li>
+                            </ul>
+                            <button class="btn btn-gold w-100">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="hotel 4.jpg" alt="Executive Suite">
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Executive Suite</h3>
+                            <p class="room-price">Rp 2.500.000 / malam</p>
+                            <ul class="room-features">
+                                <li><i class="bi bi-check-circle-fill"></i> King Size Bed</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Ocean View</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Living Room</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Free Breakfast</li>
+                            </ul>
+                            <button class="btn btn-gold w-100">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-card">
+                        <div class="room-image">
+                            <img src="hotel 5.webp" alt="Presidential Suite">
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Presidential Suite</h3>
+                            <p class="room-price">Rp 5.000.000 / malam</p>
+                            <ul class="room-features">
+                                <li><i class="bi bi-check-circle-fill"></i> 2 Bedrooms</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Private Pool</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Butler Service</li>
+                                <li><i class="bi bi-check-circle-fill"></i> All Inclusive</li>
+                            </ul>
+                            <button class="btn btn-gold w-100">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="section-padding" style="background-color: var(--secondary-black);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title mx-auto">Fasilitas Kami</h2>
+                <p class="section-subtitle mx-auto">Nikmati berbagai fasilitas premium yang tersedia untuk kenyamanan Anda</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-water"></i>
+                        </div>
+                        <h4 class="facility-title">Kolam Renang</h4>
+                        <p class="facility-description">Kolam renang outdoor dengan pemandangan spektakuler dan bar tepi kolam</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-cup-hot"></i>
+                        </div>
+                        <h4 class="facility-title">Restoran</h4>
+                        <p class="facility-description">Restoran fine dining dengan menu internasional dan lokal yang lezat</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h4 class="facility-title">Spa & Wellness</h4>
+                        <p class="facility-description">Pusat spa dan wellness dengan berbagai perawatan relaksasi</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-bicycle"></i>
+                        </div>
+                        <h4 class="facility-title">Fitness Center</h4>
+                        <p class="facility-description">Pusat kebugaran modern dengan peralatan lengkap dan pelatih profesional</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-briefcase"></i>
+                        </div>
+                        <h4 class="facility-title">Ruang Bisnis</h4>
+                        <p class="facility-description">Fasilitas bisnis lengkap dengan ruang meeting dan akses internet cepat</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-car-front"></i>
+                        </div>
+                        <h4 class="facility-title">Valet Parking</h4>
+                        <p class="facility-description">Layanan valet parking gratis untuk semua tamu hotel</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-shuffle"></i>
+                        </div>
+                        <h4 class="facility-title">Concierge</h4>
+                        <p class="facility-description">Layanan concierge 24 jam untuk membantu segala kebutuhan Anda</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="facility-item">
+                        <div class="facility-icon">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h4 class="facility-title">Free Wi-Fi</h4>
+                        <p class="facility-description">Akses internet Wi-Fi gratis di seluruh area hotel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title mx-auto">Testimoni Tamu</h2>
+                <p class="section-subtitle mx-auto">Apa kata tamu kami tentang pengalaman menginap di Hotel Vybl</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">Pengalaman menginap yang luar biasa! Staf sangat ramah dan profesional, kamar luas dan bersih, serta fasilitas yang lengkap. Pasti akan kembali lagi.</p>
+                        <div class="testimonial-author">
+                            <img src="araw.jpeg" alt="Testimonial Author" class="author-image">
+                            <div class="author-info">
+                                <h5>araa</h5>
+                                <p>Bisnis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">Hotel yang sangat nyaman dengan pelayanan yang prima. Makanan di restoran sangat lezat dan kolam renangnya indah. Saya sangat merekomendasikan Hotel Vybl!</p>
+                        <div class="testimonial-author">
+                            <img src="AUL.jpg" alt="Testimonial Author" class="author-image">
+                            <div class="author-info">
+                                <h5>aull</h5>
+                                <p>Liburan Keluarga</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">Saya sangat terkesan dengan kemewahan dan kenyamanan yang ditawarkan Hotel Vybl. Lokasinya strategis dan mudah diakses. Suasana yang tenang membuat liburan saya sempurna.</p>
+                        <div class="testimonial-author">
+                            <img src="celow.jpeg" alt="Testimonial Author" class="author-image">
+                            <div class="author-info">
+                                <h5>celaa</h5>
+                                <p>Bulan Madu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding" style="background-color: var(--secondary-black);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title mx-auto">Galeri</h2>
+                <p class="section-subtitle mx-auto">Lihat keindahan Hotel Vybl melalui galeri foto kami</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="hotel 6.jpg" alt="Hotel Lobby">
+                        <div class="gallery-overlay">
+                            <div class="gallery-icon">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div
